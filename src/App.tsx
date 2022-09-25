@@ -1,19 +1,23 @@
 import React from 'react';
 import './App.css';
-import Diamond from './components/shapes/Diamond';
-import Ellipse from './components/shapes/Ellipse';
+import Card from './components/Card';
 import ShadingDefs from './components/shapes/ShadingDefs';
-import Squiggle from './components/shapes/Squiggle';
+import { useDeck } from './hooks/useDeck';
 
 function App() {
+  const { deck } = useDeck(true);
   return (
     <div className="App">
-      <header className="App-header">
-        <ShadingDefs/>
-        <Diamond color='red' shading='empty'/>
-        <Ellipse color='purple' shading='hashed'/>
-        <Squiggle color='green' shading='solid'/>
-      </header>
+      <main>
+        <section className='flex flex-wrap'>
+          {
+            deck.map((props, index) => <Card
+              key={index}
+              {...props} />)
+          }
+        </section>
+      </main>
+      <ShadingDefs />
     </div>
   );
 }
