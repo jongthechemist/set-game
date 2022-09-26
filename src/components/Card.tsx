@@ -15,7 +15,7 @@ const Card: FC<CardProps> = ({ shape, number, ...shapeProps }) => {
   const content = Array.from({ length: number }, (_, index) => <ShapeComponent key={index} {...shapeProps} />);
 
   return (
-    <div className={`flex flex-col justify-center p-6 rounded-lg shadow-lg border-2 border-slate-200 scale-75 h-80 `}>
+    <div className={`flex justify-self-center self-center justify-center p-4 rounded-lg shadow-lg border-2 border-slate-200 w-60 h-40`}>
       {content}
     </div>
   )

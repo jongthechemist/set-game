@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <main>
-        <section className='flex flex-wrap'>
+        <section className='grid grid-rows-3 h-screen grid-flow-col gap-8 p-8'>
           {
             deck.map((props, index) => <Card
               key={index}

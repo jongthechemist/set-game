@@ -1,21 +1,21 @@
 import { FC } from "react";
-import { CardProps, ShapeProps } from "../../types/CardProps";
+import { ShapeProps } from "../../types/CardProps";
 
-const BaseShape: FC<ShapeProps & {path: string, shape: CardProps['shape']}> = (props) => {
-  const { color: stroke, shape, path, shading } = props;
+const BaseShape: FC<ShapeProps & {path: string, clipId: string}> = (props) => {
+  const { color: stroke, clipId, path, shading } = props;
   const strokeWidth = 6;
   const stripeId = `stripe-${stroke}`;
   const fill = props.shading === 'solid' ? stroke : shading === 'hashed' ? `url(#${stripeId}` : "transparent";
 
   return (
-    <svg width={200} height={100} viewBox={"0 0 200 100"}>
+    <svg viewBox={"0 0 100 200"}>
       <defs>
-        <path id={shape} d={path} />
-        <clipPath id={`clip-${shape}`}>
-          <use xlinkHref={`#${shape}`} />
+        <path id={clipId} d={path} />
+        <clipPath id={`clip-${clipId}`}>
+          <use xlinkHref={`#${clipId}`} />
         </clipPath>
       </defs>
-      <g clipPath={`url(#clip-${props.shape})`}>
+      <g clipPath={`url(#clip-${clipId})`} style={{rotate: '90deg', translate: '100%'}}>
         <path d={props.path} fill={fill} stroke={stroke} strokeWidth={strokeWidth * 2} />
       </g>
     </svg>
