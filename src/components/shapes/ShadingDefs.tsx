@@ -4,7 +4,7 @@ import { ALL_COLORS } from "../../types/CardProps";
 const ShadingDefs: FC<{}> = () => {
   const strokeWidth = 6;
   return (
-    <svg width={200} height={100} viewBox={"0 0 200 100"} data-testid="shading-defs">
+    <svg width={200} height={0} viewBox={"0 0 200 100"} data-testid="shading-defs">
       <defs>
         {
           ALL_COLORS.map((color) => (
