@@ -1,8 +1,7 @@
 import { useState } from "react";
 import shuffle from 'lodash/shuffle';
 import { ALL_COLORS, ALL_NUMBERS, ALL_SHADINGS, ALL_SHAPES, CardProps } from "../types/CardProps";
-
-type Deck = Array<CardProps>;
+import { Deck } from "../types/Game";
 
 function generateSortedDeck(): Deck {
   const deck: Deck = new Array<CardProps>();
