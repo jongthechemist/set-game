@@ -1,5 +1,6 @@
 import Peer, { DataConnection } from "peerjs"
 import { useEffect, useState } from "react"
+import { useCallbackRef } from "./useCallbackRef";
 
 export const usePeer = (props: {
   defaultPeerId?: string,
@@ -20,6 +21,9 @@ export const usePeer = (props: {
     onClose?.();
   }
 
+  const savedCleanup = useCallbackRef(cleanUp);
+  const savedOnConnection = useCallbackRef(onConnection);
+
   useEffect(() => {
     const newPeer = defaultPeerId ? new Peer(defaultPeerId) : new Peer();
 
@@ -28,7 +32,7 @@ export const usePeer = (props: {
       setPeerId(id);
     });
 
-    newPeer.on('connection', (c) => onConnection?.(c));
+    newPeer.on('connection', (c) => savedOnConnection.current?.(c));
 
     newPeer.on('disconnected', () => {
       console.log("Peer disconnected. Attempt reconnection");
@@ -37,14 +41,14 @@ export const usePeer = (props: {
 
     newPeer.on('close', () => {
       console.log('Peer closed.');
-      cleanUp();
+      savedCleanup.current();
     });
 
     newPeer.on('error', (error) => {
       console.log("Peer error: ", error);
     });
 
-  }, [])
+  }, [savedCleanup, savedOnConnection, defaultPeerId])
 
   return {
     peer,

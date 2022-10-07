@@ -1,4 +1,4 @@
-import Peer, { DataConnection } from "peerjs";
+import { DataConnection } from "peerjs";
 import { useState } from "react";
 import { PeerMessage } from "../types/PeerMessage";
 import { usePeer } from "./usePeer";

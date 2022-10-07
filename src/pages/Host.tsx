@@ -22,7 +22,7 @@ const Host: FC<{}> = () => {
         navigate(host.id);
       }
     }
-  }, [hostId, host?.id]);
+  }, [hostId, host?.id, navigate]);
 
   return (
     <main>

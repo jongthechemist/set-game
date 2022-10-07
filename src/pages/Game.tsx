@@ -7,7 +7,7 @@ import { MessageType, PeerMessage } from "../types/PeerMessage";
 
 const Game: FC<{}> = () => {
   const { hostId } = useParams();
-  const { host, peers } = useHost({});
+  const { host } = useHost({});
   const [gameId, setGameId] = useState("");
   const [deck, setDeck] = useState<Deck>();
 
@@ -32,7 +32,7 @@ const Game: FC<{}> = () => {
         conn.close();
       }
     }
-  }, [host?.id, hostId]);
+  }, [host, hostId]);
 
   return (
     <article>
