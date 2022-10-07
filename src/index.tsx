@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import Board from './pages/Board';
 import Deck from './pages/Deck';
 import Host from './pages/Host';
 import Game from './pages/Game';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App/>,
@@ -38,9 +38,7 @@ const router = createBrowserRouter([
       }
     ]
   },
-], {
-  basename: "/set-game"
-});
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
